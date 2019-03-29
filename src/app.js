@@ -109,6 +109,16 @@ App = {
 
 	},
 
+	createTask: async () => {
+		App.setLoading(true)
+		// Get the input value
+		const content = $('#newTask').val()
+		// Call the createTask function
+		await App.todoList.createTask(content)
+
+		window.location.reload()
+	},
+
 	setLoading: (boolean) => {
 		App.loading = boolean
 		const loader = $('#loader')

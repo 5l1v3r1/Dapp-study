@@ -10,6 +10,12 @@ contract TodoList {
 		bool completed;
 	}
 
+	event TaskCreated(
+		uint id,
+		string content,
+		bool completed
+		);
+
 	// mapping to access the storage
 	// todoList.tasks() access the items
 	mapping(uint => Task) public tasks; // using "public" so SC will provide a function for free
@@ -19,6 +25,9 @@ contract TodoList {
 		taskCount ++;
 		//create Task item
 		tasks[taskCount] = Task(taskCount, _content, false);
+
+		// Broadcast an event that task created
+		emit TaskCreated(taskCount, _content, false);
 	}
 
 	//add some init tasks using contructor
